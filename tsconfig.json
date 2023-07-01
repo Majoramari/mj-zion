@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "target": "es2015",
+    "moduleResolution": "NodeNext",
+    "types": [
+      "bun-types"
+    ],
+    "plugins": [
+      {
+        "name": "typescript-plugin-toml"
+      }
+    ],
+    "strict": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  }
+}

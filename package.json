@@ -1,0 +1,22 @@
+{
+	"name": "mj-zion",
+	"version": "1.0.0",
+	"main": "src/bot.ts",
+	"author": "MajorAmari",
+	"private": true,
+	"scripts": {
+		"dev": "bun run --watch ./src/bot.ts",
+		"start": "bun run ./src/bot.ts",
+		"deploy": "bun run src/scripts/deploy.ts",
+		"deploy:production": "NODE_ENV=production bun run src/scripts/deploy.ts"
+	},
+	"dependencies": {
+		"bun-types": "^0.6.9",
+		"colorette": "^2.0.20",
+		"discord.js": "^14.11.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.3.1",
+		"typescript": "^5.1.3"
+	}
+}

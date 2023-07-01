@@ -1,0 +1,6 @@
+[install]
+optional = true    # whether to install optionalDependencies
+dev = true         # whether to install devDependencies
+peer = false       # whether to install peerDependencies
+production = false # equivalent to `--production` flag
+dryRun = false     # equivalent to `--dry-run` flag

@@ -6,11 +6,6 @@
     "types": [
       "bun-types"
     ],
-    "plugins": [
-      {
-        "name": "typescript-plugin-toml"
-      }
-    ],
     "strict": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,

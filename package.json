@@ -1,9 +1,10 @@
 {
 	"name": "mj-zion",
-	"version": "1.0.0",
+	"version": "0.3.3",
 	"main": "src/bot.ts",
 	"author": "MajorAmari",
-	"private": true,
+	"license": "MIT",
+	"private": false,
 	"scripts": {
 		"dev": "bun run --watch ./src/bot.ts",
 		"start": "bun run ./src/bot.ts",

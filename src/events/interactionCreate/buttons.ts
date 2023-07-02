@@ -16,6 +16,7 @@ export default event("interactionCreate", async ({ client }, interaction) => {
 	try {
 		const buttonsIdentifiers = RegExp(/^(confirm|cancel)-/);
 
+		// TODO
 		const currentDate = new Date();
 		const year = currentDate.getFullYear();
 		const month = String(currentDate.getMonth() + 1).padStart(2, "0");

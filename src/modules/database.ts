@@ -185,6 +185,38 @@ export class Database {
 	}
 
 	/**
+	 * Retrieves the player's score, considering 2 points for wins and 1 point for defeats in confirmed matches.
+	 * @param playerId The ID of the player.
+	 * @param game The game to retrieve the score for.
+	 * @returns An object containing the number of wins, defeats, and the combined score.
+	 */
+	public getPlayerScoreWithDefeats(
+		playerId: string,
+		game: string
+	): { wins: number; defeats: number; score: number } {
+		const statement: Statement = this.db.prepare(`
+    SELECT
+      SUM(CASE WHEN winnerId = ? THEN 1 ELSE 0 END) AS wins,
+      SUM(CASE WHEN defeatedId = ? THEN 1 ELSE 0 END) AS defeats,
+      SUM(CASE WHEN winnerId = ? THEN 2 ELSE 1 END) AS score
+    FROM matches
+    WHERE game = ? AND isConfirmed = 1 AND (winnerId = ? OR defeatedId = ?);
+  `);
+
+		const result = statement.get(playerId, playerId, playerId, game, playerId, playerId) as {
+			wins: number;
+			defeats: number;
+			score: number;
+		};
+
+		return {
+			wins: result.wins || 0,
+			defeats: result.defeats || 0,
+			score: result.score || 0,
+		};
+	}
+
+	/**
 	 * Retrieves the top 15 players with the highest score in a specific game, considering only confirmed matches.
 	 * @param game The game to retrieve the top players for.
 	 * @returns An array of players with their corresponding scores, sorted in descending order.

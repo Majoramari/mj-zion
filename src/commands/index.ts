@@ -1,4 +1,4 @@
-import debug from "./debug";
+import admin from "./admin";
 import general from "./general";
 
-export default [debug, general];
+export default [admin, general];

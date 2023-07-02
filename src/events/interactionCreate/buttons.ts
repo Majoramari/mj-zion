@@ -115,24 +115,28 @@ export default event("interactionCreate", async ({ client }, interaction) => {
 			const deletedMatchData = client.database.deleteMatchById(matchId);
 
 			if (deletedMatchData) {
-				logChannel.send({
-					embeds: [
-						new EmbedBuilder({
-							color: Colors.Orange,
-							description: `### قام <@${interaction.user.id}> برفض مبارة\nالسبب:\n\n\n\`\`\`${
-								reason || "لم يقدم سبب"
-							}\`\`\``,
-							fields: [
-								{ inline: true, name: "🏆 فائز:", value: `<@${deletedMatchData.winnerId}>` },
-								{ inline: true, name: "🏳️ خاسر:", value: `<@${deletedMatchData.defeatedId}>` },
-								{ inline: true, name: "🕹️ العبة:", value: deletedMatchData.game },
-							],
-							footer: {
-								text: `بتاريخ: ${year}/${month}/${day} - ${hours}:${minutes}${amOrPm}`,
-							},
-						}),
-					],
-				});
+				logChannel
+					.send({
+						embeds: [
+							new EmbedBuilder({
+								color: Colors.Orange,
+								description: `### قام <@${interaction.user.id}> برفض مبارة\nالسبب:\n\n\n\`\`\`${
+									reason || "لم يقدم سبب"
+								}\`\`\``,
+								fields: [
+									{ inline: true, name: "🏆 فائز:", value: `<@${deletedMatchData.winnerId}>` },
+									{ inline: true, name: "🏳️ خاسر:", value: `<@${deletedMatchData.defeatedId}>` },
+									{ inline: true, name: "🕹️ العبة:", value: deletedMatchData.game },
+								],
+								footer: {
+									text: `بتاريخ: ${year}/${month}/${day} - ${hours}:${minutes}${amOrPm}`,
+								},
+							}),
+						],
+					})
+					.catch((error: Error) => {
+						log(error.message, LoggerColor.ERROR);
+					});
 			}
 
 			response.deferUpdate().catch((err) => {});

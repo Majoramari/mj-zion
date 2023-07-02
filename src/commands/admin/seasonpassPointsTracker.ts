@@ -31,8 +31,6 @@ export default command(
 		try {
 			const { score, wins, defeats } = client.database.getPlayerScoreWithDefeats(player.id, game);
 
-			console.log(wins / defeats);
-
 			const wdr = !defeats ? 0 : wins / defeats;
 
 			const embed = new EmbedBuilder({
@@ -40,7 +38,7 @@ export default command(
 				fields: [
 					{ name: "👤 اللاعب", value: `${player}`, inline: true },
 					{ name: "🕹️ اللعبة", value: `${gamesArray().get(game)?.name}`, inline: true },
-					{ name: "🎌 مرات الفوز", value: `**${wins}**`, inline: false },
+					{ name: "🎌 مرات الفوز", value: `**${wins}**`, inline: true },
 					{ name: "🏳️ مرات الخسارة", value: `**${defeats}**`, inline: true },
 					{ name: "🧮 نسبة الفوز للخسارة", value: `**${wdr}**`, inline: true },
 					{ name: "💯 النقاط", value: `**${score}**`, inline: true },

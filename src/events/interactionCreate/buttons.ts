@@ -18,14 +18,17 @@ export default event("interactionCreate", async ({ client }, interaction) => {
 
 		// TODO
 		const currentDate = new Date();
-		const year = currentDate.getFullYear();
-		const month = String(currentDate.getMonth() + 1).padStart(2, "0");
-		const day = String(currentDate.getDate()).padStart(2, "0");
-		let hours = currentDate.getHours();
-		const minutes = String(currentDate.getMinutes()).padStart(2, "0");
+		currentDate.setUTCHours(currentDate.getUTCHours() + 3); // Adjust for UTC+3 KSA timezone
+		const year = currentDate.getUTCFullYear();
+		const month = String(currentDate.getUTCMonth() + 1).padStart(2, "0");
+		const day = String(currentDate.getUTCDate()).padStart(2, "0");
+		let hours = currentDate.getUTCHours();
+		const minutes = String(currentDate.getUTCMinutes()).padStart(2, "0");
 		const amOrPm = hours >= 12 ? "PM" : "AM";
 
 		hours = hours % 12 || 12;
+
+		const formattedDate = `${year}/${month}/${day} - ${hours}:${minutes}${amOrPm}`;
 
 		if (interaction.customId.startsWith("confirm-")) {
 			const matchId = interaction.customId.replace(buttonsIdentifiers, "");
@@ -64,7 +67,7 @@ export default event("interactionCreate", async ({ client }, interaction) => {
 					url: gameData!.image,
 				},
 				footer: {
-					text: `بتاريخ: ${year}/${month}/${day} - ${hours}:${minutes}${amOrPm}`,
+					text: `بتاريخ: ${formattedDate}`,
 				},
 			});
 
@@ -129,7 +132,7 @@ export default event("interactionCreate", async ({ client }, interaction) => {
 									{ inline: true, name: "🕹️ العبة:", value: deletedMatchData.game },
 								],
 								footer: {
-									text: `بتاريخ: ${year}/${month}/${day} - ${hours}:${minutes}${amOrPm}`,
+									text: `بتاريخ: ${formattedDate}`,
 								},
 							}),
 						],

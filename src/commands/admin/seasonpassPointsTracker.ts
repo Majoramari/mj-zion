@@ -8,7 +8,7 @@ const options: Omit<GamesArray, "category">[] = Array.from(gamesArray().values()
 export default command(
 	new SlashCommandBuilder()
 		.setName("spp")
-		.setDescription("shows participations points + winners")
+		.setDescription("الحوت بياكل جمبري يصاحبي، بجد مش بهزر.")
 		.setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 		.addStringOption((option) =>
 			option

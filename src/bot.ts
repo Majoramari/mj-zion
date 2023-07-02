@@ -9,3 +9,10 @@ new MjClient({
 		GatewayIntentBits.GuildMessages,
 	],
 });
+
+/* 
+	TODO
+	* - SEND CANCELLED
+	* - Change Confrim
+	* - Send message to game thread
+*/

@@ -123,7 +123,7 @@ export default event("interactionCreate", async ({ client }, interaction) => {
 						embeds: [
 							new EmbedBuilder({
 								color: Colors.Orange,
-								description: `### قام <@${interaction.user.id}> برفض مبارة\nالسبب:\n\n\n\`\`\`${
+								description: `### قام <@${interaction.user.id}> برفض مبارة\nالسبب:\n\`\`\`${
 									reason || "لم يقدم سبب"
 								}\`\`\``,
 								fields: [

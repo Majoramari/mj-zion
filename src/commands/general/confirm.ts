@@ -4,7 +4,6 @@ import {
 	ButtonStyle,
 	Colors,
 	EmbedBuilder,
-	PermissionFlagsBits,
 	SlashCommandBuilder,
 } from "discord.js";
 import { LoggerColor, command, log } from "../../utils";

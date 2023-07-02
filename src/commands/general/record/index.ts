@@ -8,7 +8,7 @@ import {
 	SlashCommandBuilder,
 	StringSelectMenuInteraction,
 } from "discord.js";
-import { configs, LoggerColor, command, log } from "../../../utils";
+import { LoggerColor, command, log } from "../../../utils";
 import recordEmbed from "./recordEmbed";
 import endEmbed from "./endEmbed";
 import opponentEmbed from "./opponentEmbed";

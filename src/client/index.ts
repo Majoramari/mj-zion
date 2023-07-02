@@ -1,4 +1,4 @@
-import { ChannelType, Client, ClientOptions, Collection, Message, ThreadChannel } from "discord.js";
+import { ChannelType, Client, ClientOptions, Collection, ThreadChannel } from "discord.js";
 import { log, logo, LoggerColor, registerEvents, configs, GamesArray, gamesArray } from "../utils";
 import { Database } from "../modules";
 import events from "../events";

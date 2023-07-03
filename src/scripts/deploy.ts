@@ -15,8 +15,11 @@ const main = async () => {
 
 	await rest.put(endpoint, { body });
 
-	if (process.env.NODE_ENV === "empty") {
+	if (process.env.NODE_ENV === "empty:prod") {
 		await rest.put(globalEndpoint, { body: [] });
+		return currentUser;
+	}
+	if (process.env.NODE_ENV === "empty") {
 		await rest.put(localEndpoint, { body: [] });
 		return currentUser;
 	}
@@ -31,7 +34,9 @@ main()
 			process.env.NODE_ENV === "production"
 				? green(`Successfully released commands in production as ${tag}!`)
 				: process.env.NODE_ENV === "empty"
-				? green(`Successfully removed commands!`)
+				? green(`Successfully removed local commands!`)
+				: process.env.NODE_ENV === "empty:prod"
+				? green(`Successfully removed global commands!`)
 				: green(
 						`Successfully registered commands for development in ${configs.mainGuild} as ${tag}!`
 				  );

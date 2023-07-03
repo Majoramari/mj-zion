@@ -8,13 +8,18 @@ const rest = new REST({ version: "10" }).setToken(configs.clientToken);
 
 const main = async () => {
 	const currentUser = (await rest.get(Routes.user())) as APIUser;
+	const globalEndpoint = Routes.applicationCommands(currentUser.id);
+	const localEndpoint = Routes.applicationGuildCommands(currentUser.id, configs.mainGuild);
 
-	const endpoint =
-		process.env.NODE_ENV === "production"
-			? Routes.applicationCommands(currentUser.id)
-			: Routes.applicationGuildCommands(currentUser.id, configs.mainGuild);
+	const endpoint = process.env.NODE_ENV === "production" ? globalEndpoint : localEndpoint;
 
 	await rest.put(endpoint, { body });
+
+	if (process.env.NODE_ENV === "empty") {
+		await rest.put(globalEndpoint, { body: [] });
+		await rest.put(localEndpoint, { body: [] });
+		return currentUser;
+	}
 
 	return currentUser;
 };
@@ -25,6 +30,8 @@ main()
 		const response =
 			process.env.NODE_ENV === "production"
 				? green(`Successfully released commands in production as ${tag}!`)
+				: process.env.NODE_ENV === "empty"
+				? green(`Successfully removed commands!`)
 				: green(
 						`Successfully registered commands for development in ${configs.mainGuild} as ${tag}!`
 				  );

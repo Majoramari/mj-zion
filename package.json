@@ -9,7 +9,9 @@
 		"dev": "bun run --watch ./src/bot.ts",
 		"start": "bun run ./src/bot.ts",
 		"deploy": "bun run src/scripts/deploy.ts",
-		"deploy:production": "NODE_ENV=production bun run src/scripts/deploy.ts"
+		"deploy:production": "NODE_ENV=production bun run src/scripts/deploy.ts",
+		"deploy:empty-prod": "NODE_ENV=empty-prod bun run src/scripts/deploy.ts",
+		"deploy:empty": "NODE_ENV=empty bun run src/scripts/deploy.ts"
 	},
 	"dependencies": {
 		"bun-types": "^0.6.9",

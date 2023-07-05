@@ -50,9 +50,12 @@ export default event("interactionCreate", async ({ client }, interaction) => {
 
 			lvBot
 				.send({
-					content: `{ winnerId: "${match.winnerId}", defeatedId: "${match.defeatedId}" }`,
+					content: `{ "winnerId": "${match.winnerId}", "defeatedId": "${match.defeatedId}" }`,
 				})
-				.catch((_error) => {
+				.then(() => {
+					log("Message sent to lvBot", LoggerColor.NONE);
+				})
+				.catch(() => {
 					log("MJ - 404NDM Not able to send messages to lvBot");
 				});
 

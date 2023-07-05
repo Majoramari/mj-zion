@@ -1,4 +1,4 @@
-import { white } from "colorette";
+import { bgRedBright, black, underline, white } from "colorette";
 import { MjClient } from "../../client";
 import { LoggerColor, configs, log } from "..";
 import categoriesRow from "../../assets/threads.json";
@@ -46,6 +46,17 @@ export const startupCheck = async (client: MjClient) => {
 			}
 		}
 	}
+
+	// ! Check if threads are availables
+	const lvBot = client.users.fetch(configs.lvBotId).catch(() => {
+		log(
+			`MJ - 402CW Please check the id lvBotId, ${underline(
+				bgRedBright(black("The bot is functional but no xp is givin!"))
+			)}`,
+			LoggerColor.ERROR
+		);
+	});
+	if (!lvBot) throw new Error("MJ - 403NT I'm not connected to lvBot");
 
 	// ! Check if threads are availables
 	await client.getGamesThreads();

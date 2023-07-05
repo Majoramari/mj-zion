@@ -4,4 +4,5 @@ export interface Config {
 	mainGuild: string;
 	gamesForum: string;
 	logChannel: string;
+	lvBotId: string;
 }

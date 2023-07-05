@@ -6,6 +6,7 @@ export const configs: Config = {
 	mainGuild: process.env.MAIN_GUILD ?? "nil",
 	gamesForum: process.env.GAMES_FORUM ?? "nil",
 	logChannel: process.env.LOG_CHANNEL ?? "nil",
+	lvBotId: process.env.LV_BOT_ID ?? "nil",
 };
 
 if (Object.values(configs).includes("nil"))

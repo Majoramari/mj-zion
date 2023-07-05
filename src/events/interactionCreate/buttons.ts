@@ -44,6 +44,18 @@ export default event("interactionCreate", async ({ client }, interaction) => {
 					components: [],
 				});
 
+			const lvBot = client.users.cache.get(configs.lvBotId);
+
+			if (!lvBot) throw new Error("MJ - 402NDM Not able to send messages to lvBot");
+
+			lvBot
+				.send({
+					content: `{ winnerId: "${match.winnerId}", defeatedId: "${match.defeatedId}" }`,
+				})
+				.catch((_error) => {
+					log("MJ - 404NDM Not able to send messages to lvBot");
+				});
+
 			const thread = threads.find((thread) =>
 				thread.games.find((name) => name.name === match.game)
 			);

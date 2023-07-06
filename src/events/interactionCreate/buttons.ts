@@ -44,19 +44,20 @@ export default event("interactionCreate", async ({ client }, interaction) => {
 					components: [],
 				});
 
-			const lvBot = client.users.cache.get(configs.lvBotId);
+			const lvChannel = client.channels.cache.get(configs.lvChannelId);
 
-			if (!lvBot) throw new Error("MJ - 402NDM Not able to send messages to lvBot");
+			if (!lvChannel || lvChannel.type !== ChannelType.GuildText)
+				throw new Error("MJ - 402NCM Not able to send messages to lvChannel");
 
-			lvBot
+			lvChannel
 				.send({
 					content: `{ "winnerId": "${match.winnerId}", "defeatedId": "${match.defeatedId}" }`,
 				})
 				.then(() => {
-					log("Message sent to lvBot", LoggerColor.NONE);
+					log("Message sent to lvChannel", LoggerColor.NONE);
 				})
 				.catch(() => {
-					log("MJ - 404NDM Not able to send messages to lvBot");
+					log("MJ - 404NDM Not able to send messages to lvChannel");
 				});
 
 			const thread = threads.find((thread) =>

@@ -48,15 +48,15 @@ export const startupCheck = async (client: MjClient) => {
 	}
 
 	// ! Check if threads are availables
-	const lvBot = client.users.fetch(configs.lvBotId).catch(() => {
+	const lvChannel = client.channels.fetch(configs.lvChannelId).catch(() => {
 		log(
-			`MJ - 402CW Please check the id lvBotId, ${underline(
+			`MJ - 402CW Please check the id lvChannelId, ${underline(
 				bgRedBright(black("The bot is functional but no xp is givin!"))
 			)}`,
 			LoggerColor.ERROR
 		);
 	});
-	if (!lvBot) throw new Error("MJ - 403NT I'm not connected to lvBot");
+	if (!lvChannel) throw new Error("MJ - 403NT I'm not connected to lvChannel");
 
 	// ! Check if threads are availables
 	await client.getGamesThreads();
